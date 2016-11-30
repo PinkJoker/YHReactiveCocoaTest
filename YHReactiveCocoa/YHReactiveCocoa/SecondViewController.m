@@ -130,6 +130,14 @@
     }];
     //执行命令
     [__command execute:@"2"];
+    //普通做法调用
+    [self commandOne];
+    //一般做法
+    [self commandTwo];
+    //高级
+    [self commandThree];
+    //swichtolasted
+    [self commandFour];
 
     
 }
@@ -171,6 +179,7 @@
     //执行命令
     [command execute:@2];
 }
+//高级
 -(void)commandThree{
     RACCommand *command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -185,17 +194,17 @@
     [command execute:@2];
     
 }
-
+//swichtoLasted
 -(void)commandFour{
     //创建信号中的信号
     RACSubject *signalofsignals = [RACSubject subject];
     RACSubject *signal = [RACSubject subject];
     //订阅信号
-    [signalofsignals subscribeNext:^(id x) {
-       [x subscribeNext:^(id x) {
-           NSLog(@"%@",x);
-       }];
-    }];
+//    [signalofsignals subscribeNext:^(id x) {
+//       [x subscribeNext:^(id x) {
+//           NSLog(@"%@",x);
+//       }];
+//    }];
     //获取信号中信号发送的最新信号
     [signalofsignals.switchToLatest subscribeNext:^(id x) {
         NSLog(@"%@",x);

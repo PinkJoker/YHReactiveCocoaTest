@@ -31,18 +31,7 @@
     }];
     [button addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-//    CaculatorMaker *maker = [[CaculatorMaker alloc]init];
-//    BOOL isQule = [[[maker caculator:^void(int result) {
-//        result +=2;
-//        result *=5;
-//        return result;
-//    }] equle:^BOOL(int result) {
-//        return result == 110;
-//    }]isEqule];
-//    NSLog(@"%d",isQule);
-    
-#pragma mark --RAC
+#pragma mark --RAC RACSignal
     //1.创建信号
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         //2.发送信号
@@ -138,6 +127,18 @@
         make.add(30).muilt(10).divide(10).muilt(5);
     }];
     NSLog(@"%d",resultdivide);
+}
+//模拟函数式编程
+-(void)test{
+    //    CaculatorMaker *maker = [[CaculatorMaker alloc]init];
+    //    BOOL isQule = [[[maker caculator:^void(int result) {
+    //        result +=2;
+    //        result *=5;
+    //        return result;
+    //    }] equle:^BOOL(int result) {
+    //        return result == 110;
+    //    }]isEqule];
+    //    NSLog(@"%d",isQule);
 }
 
 
