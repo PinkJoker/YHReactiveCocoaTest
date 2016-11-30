@@ -84,8 +84,11 @@
    
         return  nil;
     }] array];
-    
-    
+#pragma mark --RACMulticastConnection(用于避免多次调用创建信号中的block)
+    //用于当一个信号，被多次订阅时，为了保证创建信号时，避免多次调用创建信号中的block，造成副作用，使用这个类处理
+    //注意事项:RACMulticastConnection通过RACSignal的-publish或者-muticast:创建
+    //RACMulticastConnection使用步骤
+    //1.创建信号 +(RACSignal *)createSignal:(RACDisposable)
     
     
     
@@ -188,17 +191,36 @@
     RACCommand *command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             [subscriber sendNext:@1];
-            [subscriber sendCompleted];
+            [subscriber sendNext:@0];
+            [subscriber sendNext:@"2"];
+            [subscriber sendNext:@"3"];
+             [subscriber sendCompleted];
             return nil;
         }];
     }];
+    //switchToLatest:用于signal of signals,获取signal of signals发出的最新信号，也就是可以直接拿到RACCommand中的信号
     [command.executionSignals.switchToLatest subscribeNext:^(id x) {
         NSLog(@"%@",x);
     }];
-    [command execute:@2];
+  
+    [command.executing subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+      //监听命令是否执行完毕，默认会执行一次，可以直接跳过，skip表示跳过第一次信号;
+    [[command.executing skip:1]subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+        if ([x boolValue] == YES) {
+            NSLog(@"正在执行");
+        }else{
+            NSLog(@"执行完成");
+        }
+    }];
+    
+    [command execute:@1];
     
 }
-//swichtoLasted(没能获取到信号)
+//swichtoLasted(没能获取到信号)RAC高级
+
 #pragma mark --没有正确获取到信号 （未完成）
 -(void)commandFour{
     //创建信号中的信号
