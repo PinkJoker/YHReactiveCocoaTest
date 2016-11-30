@@ -12,6 +12,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import "SecondViewController.h"
+#import "ThirdViewController.h"
 @interface ViewController ()
 {
     UILabel *_testLabel;
@@ -33,6 +34,17 @@
         make.width.height.mas_equalTo(100);
     }];
     [button addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:bottomBtn];
+    bottomBtn.backgroundColor = [UIColor yellowColor];
+    [bottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(button.mas_bottom).offset(30);
+        make.centerX.mas_equalTo(button.mas_centerX);
+        make.width.height.mas_equalTo(100);
+    }];
+    bottomBtn.backgroundColor = [UIColor cyanColor];
+    [bottomBtn addTarget:self action:@selector(touchButton:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     _testLabel = [[UILabel alloc]init];
     [self.view addSubview:_testLabel];
@@ -43,6 +55,9 @@
         make.height.mas_equalTo(20);
     }];
     _testLabel.textAlignment = 1;
+    
+    
+    
     
 #pragma mark --RAC RACSignal
     //1.创建信号
@@ -69,10 +84,12 @@
     //订阅信号
     [subject subscribeNext:^(id x) {
        //当信号发出新值，就会调用
+        NSLog(@"1-订阅者接收到的数据%@",x);
         //第一个订阅者
     }];
     [subject subscribeNext:^(id x) {
         //第二个订阅者
+             NSLog(@"2-订阅者接收到的数据%@",x);
     }];
     //发送信号
     [subject sendNext:@"1"];
@@ -83,9 +100,8 @@
  
     RACReplaySubject *rePlaySubject = [RACReplaySubject subject];
 
-    //发送信号
-    [rePlaySubject sendNext:@"1"];
-    [rePlaySubject sendNext:@"2"];
+
+   // [rePlaySubject sendNext:@"2"];
     //   //订阅信号
     [rePlaySubject subscribeNext:^(id x) {
         NSLog(@"第一个订阅者接收到的数据%@",x);
@@ -96,7 +112,8 @@
 //    [rePlaySubject subscribeNext:^(id x) {
 //        NSLog(@"第三个订阅者接收到的数据%@",x);
 //    }];
-    
+    //发送信号
+    [rePlaySubject sendNext:@"3"];
 
     
 }
@@ -154,6 +171,13 @@
     //    NSLog(@"%d",isQule);
 }
 
+-(void)touchButton:(UIButton *)sender
+{
+    ThirdViewController *third = [[ThirdViewController alloc]init];
+    [self presentViewController:third animated:YES completion:^{
+        
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

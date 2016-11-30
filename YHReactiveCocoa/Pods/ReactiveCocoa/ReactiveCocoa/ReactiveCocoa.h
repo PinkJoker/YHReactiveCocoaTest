@@ -60,6 +60,7 @@ FOUNDATION_EXPORT const unsigned char ReactiveCocoaVersionString[];
 #import <ReactiveCocoa/RACTestScheduler.h>
 #import <ReactiveCocoa/RACTuple.h>
 #import <ReactiveCocoa/RACUnit.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
 	#import <ReactiveCocoa/MKAnnotationView+RACSignalSupport.h>

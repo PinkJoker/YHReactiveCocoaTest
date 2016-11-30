@@ -20,6 +20,7 @@
 		377578DB1DEC14C300925A89 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377578D81DEC14C300925A89 /* ReactiveCocoa.framework */; };
 		37D7E5601DED12A00037CDE3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D7E55F1DED12A00037CDE3 /* SecondViewController.m */; };
 		37D7E5641DED1E770037CDE3 /* racModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D7E5631DED1E770037CDE3 /* racModal.m */; };
+		37F452271DEEBF8100C1942E /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F452261DEEBF8100C1942E /* ThirdViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		37D7E5611DED12BB0037CDE3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		37D7E5621DED1E770037CDE3 /* racModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = racModal.h; sourceTree = "<group>"; };
 		37D7E5631DED1E770037CDE3 /* racModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = racModal.m; sourceTree = "<group>"; };
+		37F452251DEEBF8100C1942E /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		37F452261DEEBF8100C1942E /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		D0DECBDCC09827F5B39FC810 /* Pods-YHReactiveCocoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHReactiveCocoa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YHReactiveCocoa/Pods-YHReactiveCocoa.debug.xcconfig"; sourceTree = "<group>"; };
 		EA2247A2D5205FF8D69D5065 /* Pods-YHReactiveCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHReactiveCocoa.release.xcconfig"; path = "Pods/Target Support Files/Pods-YHReactiveCocoa/Pods-YHReactiveCocoa.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +93,8 @@
 				377578BA1DEC039B00925A89 /* ViewController.m */,
 				37D7E55E1DED12A00037CDE3 /* SecondViewController.h */,
 				37D7E55F1DED12A00037CDE3 /* SecondViewController.m */,
+				37F452251DEEBF8100C1942E /* ThirdViewController.h */,
+				37F452261DEEBF8100C1942E /* ThirdViewController.m */,
 				37D7E5621DED1E770037CDE3 /* racModal.h */,
 				37D7E5631DED1E770037CDE3 /* racModal.m */,
 				37D7E5611DED12BB0037CDE3 /* PrefixHeader.pch */,
@@ -259,6 +264,7 @@
 			files = (
 				37D7E5601DED12A00037CDE3 /* SecondViewController.m in Sources */,
 				37D7E5641DED1E770037CDE3 /* racModal.m in Sources */,
+				37F452271DEEBF8100C1942E /* ThirdViewController.m in Sources */,
 				377578BB1DEC039B00925A89 /* ViewController.m in Sources */,
 				377578D21DEC099500925A89 /* CaculatorMaker.m in Sources */,
 				377578D51DEC0ACD00925A89 /* NSObject+Cacultor.m in Sources */,
