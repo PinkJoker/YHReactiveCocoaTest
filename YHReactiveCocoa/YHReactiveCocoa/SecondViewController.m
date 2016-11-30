@@ -59,11 +59,11 @@
 //        NSString *key = x[0];
 //        NSString *value = x[1];
         
-     //   NSLog(@"%@====%@",key,value);
+        NSLog(@"%@====%@",key,value);
         
     }];
     
-    //3,字典转模型
+    //3,字典转模型（未完成）
     NSMutableArray *dicArray = [NSMutableArray arrayWithObject:dic];
 //    [dicArray addObject:dic];
     NSMutableArray *itemArray = [NSMutableArray array];
@@ -75,7 +75,7 @@
         
     }];
     
-#pragma mark --字典转模型 RAC高级
+#pragma mark --字典转模型 RAC高级(未完成)
     NSArray *flagsItem = [dicArray copy];
     //map：映射的意思,目的  把原始值value映射成一个新值
     //array:把集合转换成数组
@@ -84,6 +84,10 @@
    
         return  nil;
     }] array];
+    
+    
+    
+    
     
 #pragma mark --RACCommand :用于处理事件的类
 //可以把时间如何处理，事件中的数据如何传递，包装到这个类 ，可以方便监控事件的执行过程
