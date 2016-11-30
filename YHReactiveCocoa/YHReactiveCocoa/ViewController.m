@@ -13,6 +13,9 @@
 #import <Masonry/Masonry.h>
 #import "SecondViewController.h"
 @interface ViewController ()
+{
+    UILabel *_testLabel;
+}
 
 @end
 
@@ -30,6 +33,16 @@
         make.width.height.mas_equalTo(100);
     }];
     [button addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _testLabel = [[UILabel alloc]init];
+    [self.view addSubview:_testLabel];
+    [_testLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(button.mas_top).offset(-30);
+        make.left.mas_equalTo(20);
+        make.right.mas_equalTo(-20);
+        make.height.mas_equalTo(20);
+    }];
+    _testLabel.textAlignment = 1;
     
 #pragma mark --RAC RACSignal
     //1.创建信号
@@ -98,8 +111,8 @@
     second.delegateSignal  = [RACSubject subject];
     //订阅代理信号
     [second.delegateSignal subscribeNext:^(id x) {
-        NSLog(@"点击了通知按钮");
         NSLog(@"%@",x);
+        _testLabel.text = x;
     }];
     //跳转控制器
     [self presentViewController:second animated:YES completion:^{

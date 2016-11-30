@@ -32,7 +32,7 @@
         make.width.height.mas_equalTo(100);
     }];
     [button addTarget:self action:@selector(touchButton:) forControlEvents:UIControlEventTouchDown];
-    
+    [button setTitle:@"这是Second的按钮" forState:UIControlStateNormal];
 
     
 #pragma mark --RACSequence 
@@ -194,7 +194,8 @@
     [command execute:@2];
     
 }
-//swichtoLasted
+//swichtoLasted(没能获取到信号)
+#pragma mark --没有正确获取到信号 （未完成）
 -(void)commandFour{
     //创建信号中的信号
     RACSubject *signalofsignals = [RACSubject subject];
@@ -211,7 +212,7 @@
     }];
     //发送信号
     [signalofsignals sendNext:signal];
-    [signal sendNext:@2];
+  //  [signal sendNext:@4];
 }
 
 
@@ -222,7 +223,8 @@
     //通知第一个控制器，按钮被点击
     //判断代理信号时候有值
     if (self.delegateSignal) {
-        [self.delegateSignal sendNext:@"按钮被点击了"];
+        [self.delegateSignal sendNext:sender.titleLabel.text];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
