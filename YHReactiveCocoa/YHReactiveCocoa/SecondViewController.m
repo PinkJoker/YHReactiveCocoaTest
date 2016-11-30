@@ -47,7 +47,7 @@
     NSArray *array = @[@"1",@"3",@"5",@"6",@"7",@"8",@"9"];
     [array.rac_sequence.signal subscribeNext:^(id x) {
        //订阅信号
-        NSLog(@"%@",x);
+    //    NSLog(@"%@",x);
     }];
     
     //2.便利字典,便利出来的键值对会包装秤RACTuple(元组对象)
@@ -59,7 +59,7 @@
 //        NSString *key = x[0];
 //        NSString *value = x[1];
         
-        NSLog(@"%@====%@",key,value);
+     //   NSLog(@"%@====%@",key,value);
         
     }];
     
@@ -113,22 +113,101 @@
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             [subscriber sendNext:@"请求数据"];
             //当完成数据请求，要调用sendCompleted,表示命令执行完毕，否则将永远处于执行中
-            [subscriber sendCompleted];
+          //  [subscriber sendCompleted];
             return nil;
         }];
         
     }];
+
     //强引用命令，不要被销毁，否则接收不到数据
+//    __strong __typeof(command)_command = command;
     __command = command;
     //3.订阅RACCommand中的信号
-    [command.executionSignals subscribeNext:^(id x) {
+    [__command.executionSignals subscribeNext:^(id x) {
+       [x subscribeNext:^(id x) {
+           NSLog(@"----------%@--------",x);
+       }];
+    }];
+    //执行命令
+    [__command execute:@"2"];
+
+    
+}
+#pragma mark --RACCommand五种做法
+//普通做法
+-(void)commandOne{
+    RACCommand *command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [subscriber sendNext:@"网络请求"];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+    }];
+    
+    RACSignal *signal = [command execute:@"1"];
+    [signal subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+}
+
+//
+-(void)commandTwo{
+    RACCommand *command =[[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        //input 为执行命令传进来的参数
+       return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+           [subscriber sendNext:@"执行命令产生的数据"];
+           [subscriber sendCompleted];
+           return nil;
+       }];
+    }];
+    //这里必须县订阅才能发送命令
+    //executionSignals :信号源，信号中信号。发送的数据就是信号
+    [command.executionSignals subscribeNext:^(RACSignal *x) {
+        [x subscribeNext:^(id x) {
+            NSLog(@"%@",x);
+        }];
+    }];
+    //执行命令
+    [command execute:@2];
+}
+-(void)commandThree{
+    RACCommand *command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [subscriber sendNext:@1];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+    }];
+    [command.executionSignals.switchToLatest subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    [command execute:@2];
+    
+}
+
+-(void)commandFour{
+    //创建信号中的信号
+    RACSubject *signalofsignals = [RACSubject subject];
+    RACSubject *signal = [RACSubject subject];
+    //订阅信号
+    [signalofsignals subscribeNext:^(id x) {
        [x subscribeNext:^(id x) {
            NSLog(@"%@",x);
        }];
     }];
-    
+    //获取信号中信号发送的最新信号
+    [signalofsignals.switchToLatest subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    //发送信号
+    [signalofsignals sendNext:signal];
+    [signal sendNext:@2];
 }
 
+
+
+//RACSubject模拟代理
 -(void)touchButton:(UIButton *)sender
 {
     //通知第一个控制器，按钮被点击

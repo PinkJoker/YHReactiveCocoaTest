@@ -388,7 +388,8 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/ReactiveCocoa",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Masonry",
 				);
-				GCC_PREFIX_HEADER = /Users/XingShanKeJi/Desktop/YHReactiveCocoa/YHReactiveCocoa/PrefixHeader.pch;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YHReactiveCocoa/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "$(PODS_ROOT)";
 				INFOPLIST_FILE = YHReactiveCocoa/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -414,7 +415,8 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/ReactiveCocoa",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Masonry",
 				);
-				GCC_PREFIX_HEADER = /Users/XingShanKeJi/Desktop/YHReactiveCocoa/YHReactiveCocoa/PrefixHeader.pch;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YHReactiveCocoa/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "$(PODS_ROOT)";
 				INFOPLIST_FILE = YHReactiveCocoa/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
