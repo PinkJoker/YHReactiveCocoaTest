@@ -7,10 +7,16 @@
 //
 
 #import "ThirdViewController.h"
+//#import <ReactiveCocoa/racre>
+#import "RequestModal.h"
+@interface ThirdViewController ()
+@property(nonatomic, strong)AFHTTPSessionManager *sessionManager;
+@end
 
 @interface ThirdViewController ()<UITextFieldDelegate>
 {
     UITextField *_textField;
+    UILabel *_testLabel;
 }
 @end
 
@@ -31,8 +37,72 @@
         make.height.mas_equalTo(50);
     }];
     
+    _testLabel = [[UILabel alloc]init];
+    [self.view addSubview:_testLabel];
+    [_testLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_textField.mas_bottom).offset(30);
+        make.left.mas_equalTo(30);
+        make.right.mas_equalTo(-30);
+        make.height.mas_equalTo(20);
+    }];
     
- 
+    //http://a.zkuaiji.cn/20/2002
+    self.sessionManager = [AFHTTPSessionManager manager];
+//    self.sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    self.sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    RACSignal *fetchData = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSURLSessionDataTask *task = [self.sessionManager POST:@"http://a.zkuaiji.cn/20/2002" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+            [subscriber sendNext:responseObject];
+            [subscriber sendCompleted];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [subscriber sendError:error];
+        }];
+        return [RACDisposable disposableWithBlock:^{
+            if (task.state != NSURLSessionTaskStateCompleted) {
+                [task cancel];
+            }
+        }];
+        
+    }];
+    
+    RACSignal *title = [fetchData flattenMap:^RACStream *(id value) {
+        if ([value[@"title"] isKindOfClass:[NSString class]]) {
+            
+            
+            return [RACSignal return:value[@"title"]];
+        }else{
+            return [RACSignal error:[NSError errorWithDomain:@"some error" code:400 userInfo:@{@"originData":value}]];
+        }
+    }];
+    RACSignal* desc = [fetchData flattenMap:^RACStream *(id value) {
+        if ([value[@"introduction"] isKindOfClass:[NSString class]]) {
+            return [RACSignal return:value[@"introduction"]];
+        }else{
+            return [RACSignal error:[NSError errorWithDomain:@"some error" code:400 userInfo:value]];
+        }
+    }];
+   // UILabel *label = [[UILabel alloc]init];
+    RAC(_textField,text) = [[title catchTo:[RACSignal return:@"Error"]] startWith:@"Load..."];
+    RAC(_testLabel,text) = [[desc catchTo:[RACSignal return:@"Error"]]startWith:@"Load..."];
+    
+    [[RACSignal merge:@[title]] subscribeError:^(NSError *error) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:error.domain delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+    }];
+    
+    
+    
+    
+//    RACSignal *renderedDesc = [desc flattenMap:^RACStream *(id value) {
+//        NSError *error = nil;
+//        if (error) {
+//            return [RACSignal error:error];
+//        }error{
+//            return [RACSignal return:<#(id)#>]
+//        }
+//    }];
+    
     
 }
 
@@ -49,6 +119,7 @@
         [_textField.rac_textSignal subscribeNext:^(id x) {
             if (self.delegateSubject) {
                 [self.delegateSubject sendNext:x];
+                [self.delegateSubject sendCompleted];
             }
         }];
         [self dismissViewControllerAnimated:YES completion:^{
