@@ -7,8 +7,6 @@
 //
 
 #import "SecondViewController.h"
-#import <Masonry/Masonry.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "racModal.h"
 @interface SecondViewController ()
 {

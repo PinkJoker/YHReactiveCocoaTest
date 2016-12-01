@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "CaculatorMaker.h"
 #import "NSObject+Cacultor.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <Masonry/Masonry.h>
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 @interface ViewController ()
@@ -171,9 +169,14 @@
     //    NSLog(@"%d",isQule);
 }
 
+//跳转到输入框控制器
 -(void)touchButton:(UIButton *)sender
 {
     ThirdViewController *third = [[ThirdViewController alloc]init];
+    third.delegateSubject = [RACSubject subject];
+    [third.delegateSubject subscribeNext:^(id x) {
+        _testLabel.text = x;
+    }];
     [self presentViewController:third animated:YES completion:^{
         
     }];

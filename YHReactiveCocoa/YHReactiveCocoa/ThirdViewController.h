@@ -10,4 +10,6 @@
 
 @interface ThirdViewController : UIViewController
 
+
+@property(nonatomic, strong)RACSubject *delegateSubject;
 @end
