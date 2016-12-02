@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDAutoLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -37,7 +42,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E715B078398FD26FE450BB287894FA8</key>
+		<key>1F4259ABB5B6129AE938A6A1ED1CC86D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1FD020614F277A72FB2C54745E92BA1E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,7 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A52D7A3F2A96F35EA3C6D451D4068D99</key>
+		<key>8469B393C4B7971E9D374158AAE6D047</key>
 		<dict>
 			<key>primary</key>
 			<true/>

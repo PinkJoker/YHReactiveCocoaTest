@@ -10,10 +10,12 @@
 #import "arrayDataSource.h"
 #import "fourTableViewCell.h"
 #import "fourViewModal.h"
+#import "fourModal.h"
 @interface FourTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)arrayDataSource *tableDataSource;
 @property(nonatomic, copy)NSMutableArray *dataArray;
 @property(nonatomic, strong)fourViewModal *RequestViewModal;
+@property(nonatomic, strong)fourModal *modal;
 @end
 
 @implementation FourTableViewController
@@ -26,9 +28,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    configureCellBlock block = ^(fourTableViewCell *myCell,id modal){
-        
+    [self getDataFromViewModal];
+    configureCellBlock block = ^(fourTableViewCell *myCell,fourModal *modal){
+//        [myCell ]
     };
     self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:block withArray:self.dataArray withCellIdentifier:@"datacell"];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -37,7 +39,14 @@
     
 }
 
-
+-(void)getDataFromViewModal
+{
+    RACSignal *signal = [self.RequestViewModal.requestCommand execute:nil];
+    [signal subscribeNext:^(id x) {
+        self.dataArray = x;
+        [self.tableView reloadData];
+    }];
+}
 
 
 
