@@ -18,6 +18,7 @@
     UITextField *_textField;
     UILabel *_testLabel;
 }
+
 @end
 
 @implementation ThirdViewController
@@ -50,47 +51,47 @@
     self.sessionManager = [AFHTTPSessionManager manager];
 //    self.sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
 //    self.sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    RACSignal *fetchData = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *task = [self.sessionManager POST:@"http://a.zkuaiji.cn/20/2002" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
-            [subscriber sendNext:responseObject];
-            [subscriber sendCompleted];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [subscriber sendError:error];
-        }];
-        return [RACDisposable disposableWithBlock:^{
-            if (task.state != NSURLSessionTaskStateCompleted) {
-                [task cancel];
-            }
-        }];
-        
-    }];
-    
-    RACSignal *title = [fetchData flattenMap:^RACStream *(id value) {
-        if ([value[@"title"] isKindOfClass:[NSString class]]) {
-            
-            
-            return [RACSignal return:value[@"title"]];
-        }else{
-            return [RACSignal error:[NSError errorWithDomain:@"some error" code:400 userInfo:@{@"originData":value}]];
-        }
-    }];
-    RACSignal* desc = [fetchData flattenMap:^RACStream *(id value) {
-        if ([value[@"introduction"] isKindOfClass:[NSString class]]) {
-            return [RACSignal return:value[@"introduction"]];
-        }else{
-            return [RACSignal error:[NSError errorWithDomain:@"some error" code:400 userInfo:value]];
-        }
-    }];
-   // UILabel *label = [[UILabel alloc]init];
-    RAC(_textField,text) = [[title catchTo:[RACSignal return:@"Error"]] startWith:@"Load..."];
-    RAC(_testLabel,text) = [[desc catchTo:[RACSignal return:@"Error"]]startWith:@"Load..."];
-    
-    [[RACSignal merge:@[title]] subscribeError:^(NSError *error) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:error.domain delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alertView show];
-    }];
-    
+//    RACSignal *fetchData = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//        NSURLSessionDataTask *task = [self.sessionManager POST:@"http://a.zkuaiji.cn/20/2002" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//            NSLog(@"%@",responseObject);
+//            [subscriber sendNext:responseObject];
+//            [subscriber sendCompleted];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            [subscriber sendError:error];
+//        }];
+//        return [RACDisposable disposableWithBlock:^{
+//            if (task.state != NSURLSessionTaskStateCompleted) {
+//                [task cancel];
+//            }
+//        }];
+//        
+//    }];
+//    
+//    RACSignal *title = [fetchData flattenMap:^RACStream *(id value) {
+//        if ([value[@"title"] isKindOfClass:[NSString class]]) {
+//            
+//            
+//            return [RACSignal return:value[@"title"]];
+//        }else{
+//            return [RACSignal error:[NSError errorWithDomain:@"some error" code:400 userInfo:@{@"originData":value}]];
+//        }
+//    }];
+//    RACSignal* desc = [fetchData flattenMap:^RACStream *(id value) {
+//        if ([value[@"introduction"] isKindOfClass:[NSString class]]) {
+//            return [RACSignal return:value[@"introduction"]];
+//        }else{
+//            return [RACSignal error:[NSError errorWithDomain:@"some error" code:400 userInfo:value]];
+//        }
+//    }];
+//   // UILabel *label = [[UILabel alloc]init];
+//    RAC(_textField,text) = [[title catchTo:[RACSignal return:@"Error"]] startWith:@"Load..."];
+//    RAC(_testLabel,text) = [[desc catchTo:[RACSignal return:@"Error"]]startWith:@"Load..."];
+//    
+//    [[RACSignal merge:@[title]] subscribeError:^(NSError *error) {
+//        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:error.domain delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alertView show];
+//    }];
+//    
     
     
     
@@ -102,6 +103,9 @@
 //            return [RACSignal return:<#(id)#>]
 //        }
 //    }];
+
+    
+    
     
     
 }
@@ -129,6 +133,7 @@
     }
  
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

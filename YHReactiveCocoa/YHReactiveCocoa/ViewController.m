@@ -32,6 +32,7 @@
         make.width.height.mas_equalTo(100);
     }];
     [button addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
+    button.titleLabel.text = @"第二个控制器";
     UIButton *bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:bottomBtn];
     bottomBtn.backgroundColor = [UIColor yellowColor];
@@ -40,9 +41,20 @@
         make.centerX.mas_equalTo(button.mas_centerX);
         make.width.height.mas_equalTo(100);
     }];
+    bottomBtn.titleLabel.text = @"第三个控制器";
     bottomBtn.backgroundColor = [UIColor cyanColor];
     [bottomBtn addTarget:self action:@selector(touchButton:) forControlEvents:UIControlEventTouchUpInside];
-    
+    UIButton *lastBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:lastBtn];
+    lastBtn.backgroundColor = [UIColor yellowColor];
+    [lastBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(bottomBtn.mas_bottom).offset(30);
+        make.centerX.mas_equalTo(bottomBtn.mas_centerX);
+        make.width.height.mas_equalTo(100);
+    }];
+    lastBtn.titleLabel.text = @"第四个控制器";
+    lastBtn.backgroundColor = [UIColor greenColor];
+    [lastBtn addTarget:self action:@selector(touchLastButton:) forControlEvents:UIControlEventTouchUpInside];
     
     _testLabel = [[UILabel alloc]init];
     [self.view addSubview:_testLabel];
@@ -112,6 +124,8 @@
 //    }];
     //发送信号
     [rePlaySubject sendNext:@"3"];
+    
+    
 
     
 }
@@ -180,6 +194,12 @@
     [self presentViewController:third animated:YES completion:^{
         
     }];
+}
+
+-(void)touchLastButton:(UIButton *)sender
+{
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
