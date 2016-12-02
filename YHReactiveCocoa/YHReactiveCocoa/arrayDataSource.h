@@ -10,8 +10,10 @@
 
 typedef void(^configureCellBlock)(id item,id array);
 
-@interface arrayDataSource : NSObject
+@interface arrayDataSource : NSObject<UITableViewDataSource>
 
--(id)initWithCellBlock:(configureCellBlock )block withArray:(NSArray *)items withCellIdentifier:(NSString *)cellIdenfier;
+- (id)initWithCellBlock:(configureCellBlock )block withArray:(NSArray *)items withCellIdentifier:(NSString *)cellIdenfier;
+
+- (id)numberOfItemswithIndex:(NSIndexPath *)indexPath;
 
 @end

@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface fourViewModal : NSObject
-
+@property(nonatomic, strong)RACCommand *requestCommand;
+@property(nonatomic,copy)NSMutableArray *dataArray;
 @end
