@@ -23,19 +23,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self getDataFromViewModal];
-    configureCellBlock block = ^(fourTableViewCell *myCell,fourModal *modal){
-//        [myCell ]
-    };
-    self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:block withArray:self.dataArray withCellIdentifier:@"datacell"];
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self.tableDataSource;
+
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kWidth, kHeight-64) style:UITableViewStyleGrouped];
+
     
 }
 
@@ -44,10 +37,30 @@
     RACSignal *signal = [self.RequestViewModal.requestCommand execute:nil];
     [signal subscribeNext:^(id x) {
         self.dataArray = x;
+        configureCellBlock block = ^(fourTableViewCell *myCell,fourModal *modal){
+            [myCell setModal:modal];
+        };
+        self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:block withArray:self.dataArray withCellIdentifier:@"datacell"];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self.tableDataSource;
         [self.tableView reloadData];
     }];
 }
 
+-(fourViewModal *)RequestViewModal
+{
+    if (!_RequestViewModal) {
+        NSDictionary *dic = @{@"newsid":@"1",@"usersession":@"",@"page":@"1",@"pagecount":@"20"};
+        NSString *str = @"http://a.zkuaiji.cn/30/3012";
+        _RequestViewModal = [[fourViewModal alloc]initWithDic:dic withURLStr:str];
+    }
+    return _RequestViewModal;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView];
+}
 
 
 - (void)didReceiveMemoryWarning {

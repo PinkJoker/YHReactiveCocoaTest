@@ -11,4 +11,5 @@
 @interface fourViewModal : NSObject
 @property(nonatomic, strong)RACCommand *requestCommand;
 @property(nonatomic,copy)NSMutableArray *dataArray;
+-(instancetype)initWithDic:(NSDictionary *)dict withURLStr:(NSString *)str;
 @end

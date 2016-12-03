@@ -20,7 +20,7 @@
     self = [super init];
     if (self) {
         self.cellBlock = block;
-        self.itemArray = items;
+        self.itemArray = [items copy];
         self.identifier = cellIdenfier;
     }
     return self;
@@ -37,6 +37,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"%lu",(unsigned long)self.itemArray.count);
     return self.itemArray.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

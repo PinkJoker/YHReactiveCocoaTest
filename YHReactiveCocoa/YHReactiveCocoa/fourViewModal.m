@@ -11,24 +11,23 @@
 @implementation fourViewModal
 
 
--(instancetype)init
+-(instancetype)initWithDic:(NSDictionary *)dict withURLStr:(NSString *)str
 {
     self = [super init];
     if (self) {
-        [self getData];
+        [self getDataWithDic:dict withURLStr:str];
     }
     return self;
 }
 
--(void)getData
+-(void)getDataWithDic:(NSDictionary *)dict withURLStr:(NSString *)str
 {
     self.requestCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
         RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-           [[AFHTTPSessionManager manager]POST:@"" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-               NSLog(@"发送成功");
+           [[AFHTTPSessionManager manager]POST:str parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                self.dataArray = [fourModal mj_objectArrayWithKeyValuesArray:responseObject[@"results"]];
                [subscriber sendNext:self.dataArray];
-               
+               NSLog(@"发送成功");
            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                NSLog(@"请求失败");
            }];

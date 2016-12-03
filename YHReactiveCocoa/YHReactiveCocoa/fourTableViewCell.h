@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class fourModal;
 @interface fourTableViewCell : UITableViewCell
 @property(nonatomic, strong)UIImageView *iconImageView;
 @property(nonatomic, strong)UILabel *userNameLabel;
 @property(nonatomic, strong)UILabel *commentLabel;
 @property(nonatomic, strong)UILabel *timeLabel;
+@property(nonatomic, strong)fourModal *modal;
 @end

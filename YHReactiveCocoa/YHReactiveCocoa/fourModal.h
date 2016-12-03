@@ -10,7 +10,16 @@
 
 @interface fourModal : NSObject
 
-@property(nonatomic, copy)NSString *companyName;
-@property(nonatomic, copy)NSString *isreview;
+@property (nonatomic, copy) NSString *fromuserid;
+@property (nonatomic, copy) NSString *commentid;
+@property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *fromusernickname;
+@property (nonatomic, copy) NSString *ispraise;
+@property (nonatomic, copy) NSString *commentpraise;
+@property (nonatomic, copy) NSString *parentid;
+@property (nonatomic, copy) NSString *commentnumber;
+@property (nonatomic, copy) NSString *creationdate;
+@property (nonatomic, copy) NSString *newsid;
+@property (nonatomic, copy) NSString *commentcontent;
 
 @end

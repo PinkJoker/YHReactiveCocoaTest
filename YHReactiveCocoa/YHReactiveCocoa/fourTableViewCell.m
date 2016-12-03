@@ -40,12 +40,13 @@
     .topSpaceToView(self.contentView,10)
     .widthRatioToView(self.contentView,0.1375)
     .heightEqualToWidth();
-    
+    self.iconImageView.sd_cornerRadiusFromWidthRatio = @0.5;
+
     self.userNameLabel.sd_layout
     .leftSpaceToView(self.iconImageView,10)
     .centerXEqualToView(self.iconImageView)
-    .rightSpaceToView(self.contentView,20)
     .heightIs(20);
+    [self.userNameLabel setSingleLineAutoResizeWithMaxWidth:200];
     
     self.commentLabel.sd_layout
     .topSpaceToView(self.userNameLabel,20)
@@ -59,8 +60,19 @@
     .leftSpaceToView(self.userNameLabel,10)
     .heightIs(20);
     
+    [self setupAutoHeightWithBottomView:self.timeLabel bottomMargin:20];
+    
+    
 }
 
+-(void)setModal:(fourModal *)modal
+{
+    _modal = modal;
+//    [self.iconImageView.image]
+    
+    
+    
+}
 
 
 

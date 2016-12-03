@@ -11,7 +11,7 @@
 #import "NSObject+Cacultor.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
-
+#import "FourTableViewController.h"
 @interface ViewController ()
 {
     UILabel *_testLabel;
@@ -199,7 +199,8 @@
 
 -(void)touchLastButton:(UIButton *)sender
 {
-    
+    FourTableViewController *tableVC = [[FourTableViewController alloc]init];
+    [self presentViewController:tableVC animated:YES completion:nil];
     
 }
 
