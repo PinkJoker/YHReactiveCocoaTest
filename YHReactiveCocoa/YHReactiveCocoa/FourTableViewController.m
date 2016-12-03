@@ -31,8 +31,6 @@
 {
     [self getDataFromViewModal];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kWidth, kHeight-64) style:UITableViewStyleGrouped];
-
-  
 }
 
 -(void)getDataFromViewModal
@@ -53,16 +51,6 @@
     }];
 }
 
--(fourViewModal *)RequestViewModal
-{
-    if (!_RequestViewModal) {
-        NSDictionary *dic = @{@"newsid":@"1",@"usersession":@"",@"page":@"1",@"pagecount":@"20"};
-        NSString *str = @"http://a.zkuaiji.cn/30/3012";
-        _RequestViewModal = [[fourViewModal alloc]initWithDic:dic withURLStr:str];
-    }
-    return _RequestViewModal;
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView];
@@ -78,7 +66,15 @@
         
     }];
 }
-
+-(fourViewModal *)RequestViewModal
+{
+    if (!_RequestViewModal) {
+        NSDictionary *dic = @{@"newsid":@"1",@"usersession":@"",@"page":@"1",@"pagecount":@"20"};
+        NSString *str = @"http://a.zkuaiji.cn/30/3012";
+        _RequestViewModal = [[fourViewModal alloc]initWithDic:dic withURLStr:str];
+    }
+    return _RequestViewModal;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
