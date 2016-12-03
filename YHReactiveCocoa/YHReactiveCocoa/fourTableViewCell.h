@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface fourTableViewCell : UITableViewCell
-
+@property(nonatomic, strong)UIImageView *iconImageView;
+@property(nonatomic, strong)UILabel *userNameLabel;
+@property(nonatomic, strong)UILabel *commentLabel;
+@property(nonatomic, strong)UILabel *timeLabel;
 @end
