@@ -7,9 +7,11 @@
 //
 
 #import "CommentDetailsViewController.h"
-
-@interface CommentDetailsViewController ()
-
+#import "arrayDataSource.h"
+static NSString *const cellIdentifier = @"cell";
+@interface CommentDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic, strong)arrayDataSource *tableDataSource;
+@property(nonatomic, strong)NSMutableArray *dataArray;
 @end
 
 @implementation CommentDetailsViewController
@@ -17,8 +19,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    configureCellBlock cellBlock = ^(id cell,id items){
+        
+    };
+    self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:cellBlock withArray:self.dataArray withCellIdentifier:cellIdentifier];
+    self.CommentDetailsTableView.delegate = self;
+    self.CommentDetailsTableView.dataSource = self.tableDataSource;
+    
+    
 }
 
+
+-(NSMutableArray *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
