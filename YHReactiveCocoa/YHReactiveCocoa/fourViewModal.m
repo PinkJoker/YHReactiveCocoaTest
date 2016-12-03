@@ -9,8 +9,6 @@
 #import "fourViewModal.h"
 #import "fourModal.h"
 @implementation fourViewModal
-
-
 -(instancetype)initWithDic:(NSDictionary *)dict withURLStr:(NSString *)str
 {
     self = [super init];

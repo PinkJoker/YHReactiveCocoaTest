@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ThirdViewController : UIViewController
-
-
+@property(nonatomic, strong)UILabel *testLabel;
 @property(nonatomic, strong)RACSubject *delegateSubject;
 @end

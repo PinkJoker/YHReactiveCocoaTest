@@ -16,7 +16,6 @@
 @interface ThirdViewController ()<UITextFieldDelegate>
 {
     UITextField *_textField;
-    UILabel *_testLabel;
 }
 
 @end
