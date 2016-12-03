@@ -22,18 +22,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
- 
     [self creatTableView];
-
-
 }
 
 -(void)creatTableView
 {
-      [self getDataFromViewModal];
+    [self getDataFromViewModal];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kWidth, kHeight-64) style:UITableViewStyleGrouped];
 
   
@@ -69,14 +65,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView]);
     return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     fourModal *modal = self.dataArray[indexPath.row];
-    weakObj(self, weakSelf);
     if (self.tableSubject) {
         [self.tableSubject sendNext:modal.commentcontent];
     }
