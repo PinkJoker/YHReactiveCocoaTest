@@ -73,6 +73,17 @@
     return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    fourModal *modal = self.dataArray[indexPath.row];
+    weakObj(self, weakSelf);
+    if (self.tableSubject) {
+        [self.tableSubject sendNext:modal.commentcontent];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 
 
 - (void)didReceiveMemoryWarning {

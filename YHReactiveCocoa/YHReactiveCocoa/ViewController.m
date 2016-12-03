@@ -200,6 +200,10 @@
 -(void)touchLastButton:(UIButton *)sender
 {
     FourTableViewController *tableVC = [[FourTableViewController alloc]init];
+    tableVC.tableSubject = [RACSubject subject];
+    [tableVC.tableSubject subscribeNext:^(id x) {
+        _testLabel.text = x;
+    }];
     [self presentViewController:tableVC animated:YES completion:nil];
     
 }

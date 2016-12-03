@@ -27,6 +27,7 @@
            [[AFHTTPSessionManager manager]POST:str parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                self.dataArray = [fourModal mj_objectArrayWithKeyValuesArray:responseObject[@"results"]];
                [subscriber sendNext:self.dataArray];
+               [subscriber sendCompleted];
                NSLog(@"发送成功");
            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                NSLog(@"请求失败");

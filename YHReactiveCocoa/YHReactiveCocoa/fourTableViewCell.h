@@ -13,5 +13,6 @@
 @property(nonatomic, strong)UILabel *userNameLabel;
 @property(nonatomic, strong)UILabel *commentLabel;
 @property(nonatomic, strong)UILabel *timeLabel;
+@property(nonatomic, strong)UIButton *unfoldButton;
 @property(nonatomic, strong)fourModal *modal;
 @end

@@ -27,15 +27,13 @@
 -(void)creatView
 {
     self.iconImageView = [[UIImageView alloc]init];
-   // self.iconImageView.backgroundColor = [UIColor greenColor];
     self.userNameLabel = [[UILabel alloc]init];
-  //  self.userNameLabel.backgroundColor = [UIColor yellowColor];
     self.commentLabel = [[UILabel alloc]init];
-   // self.commentLabel.backgroundColor = [UIColor cyanColor];
     self.timeLabel = [[UILabel alloc]init];
+    self.unfoldButton = [[UIButton alloc]init];
     self.timeLabel.font = [UIFont systemFontOfSize:14];
-   // self.timeLabel.backgroundColor = [UIColor magentaColor];
-      [self.contentView sd_addSubviews:@[self.iconImageView,self.userNameLabel,self.commentLabel,self.timeLabel]];
+    
+    [self.contentView sd_addSubviews:@[self.iconImageView,self.userNameLabel,self.commentLabel,self.timeLabel]];
     self.iconImageView.sd_layout
     .leftSpaceToView(self.contentView,10)
     .topSpaceToView(self.contentView,10)
@@ -60,6 +58,8 @@
     .topSpaceToView(self.userNameLabel,20)
     .leftEqualToView(self.userNameLabel)
     .rightSpaceToView(self.contentView,20);
+    
+    
     
 }
 

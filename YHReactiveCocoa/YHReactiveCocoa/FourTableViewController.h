@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FourTableViewController : UITableViewController
-
+@property(nonatomic, strong)RACSubject *tableSubject;
 @end
