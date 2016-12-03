@@ -16,8 +16,6 @@
 {
     UILabel *_testLabel;
 }
-@property(nonatomic, strong)RACSubject *subject;
-
 @end
 
 @implementation ViewController
@@ -194,10 +192,7 @@
         _testLabel.text = x;
     }];
 
-    [self.subject subscribeNext:^(id x) {
-        //third.testLabel = x;
-        NSLog(@"不被调用的信号");
-    }];
+   
     
     [self presentViewController:third animated:YES completion:^{
         
@@ -208,24 +203,12 @@
 {
     FourTableViewController *tableVC = [[FourTableViewController alloc]init];
     tableVC.tableSubject = [RACSubject subject];
-    self.subject = [RACSubject subject];
     [tableVC.tableSubject subscribeNext:^(id x) {
         _testLabel.text = x;
-        
-        [self.subject sendNext:_testLabel];
-        
     }];
     [self presentViewController:tableVC animated:YES completion:nil];
     
 }
-//
-//-(RACSubject *)subject
-//{
-//    if (!_subject) {
-//        _subject = [RACSubject subject];
-//    }
-//    return _subject;
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

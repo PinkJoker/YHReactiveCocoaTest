@@ -15,7 +15,7 @@
 @end
 @implementation arrayDataSource
 
--(id)initWithCellBlock:(configureCellBlock)block withArray:(NSArray *)items withCellIdentifier:(NSString *)cellIdenfier
+- (id)initWithCellBlock:(configureCellBlock)block withArray:(NSArray *)items withCellIdentifier:(NSString *)cellIdenfier
 {
     self = [super init];
     if (self) {
@@ -25,6 +25,8 @@
     }
     return self;
 }
+
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
