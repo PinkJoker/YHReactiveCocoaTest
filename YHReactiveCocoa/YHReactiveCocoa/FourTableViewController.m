@@ -69,9 +69,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath cellContentViewWidth:375 tableView:self.tableView]);
-    
-    return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:375 tableView:self.tableView];
+    NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView]);
+    return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView];
 }
 
 
