@@ -29,6 +29,11 @@ static NSString *const cellIdentifier = @"cell";
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 
 -(NSMutableArray *)dataArray
 {
