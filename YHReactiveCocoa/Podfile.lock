@@ -24,6 +24,9 @@ PODS:
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
   - SDAutoLayout (2.1.2)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -31,6 +34,7 @@ DEPENDENCIES:
   - MJExtension (~> 3.0.10)
   - ReactiveCocoa (= 2.5)
   - SDAutoLayout (~> 2.1.2)
+  - SDWebImage (~> 3.8.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -38,7 +42,8 @@ SPEC CHECKSUMS:
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDAutoLayout: 4910758003bbb043003700915b00f53fbc2bf512
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 72ecf6328ef9af9a8647dc50831625f71f54b178
+PODFILE CHECKSUM: 1af105d438f3d1b8ab24f602797fa7081c3d2aba
 
 COCOAPODS: 1.0.1
