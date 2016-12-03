@@ -7,7 +7,7 @@
 //
 
 #import "fourTableViewCell.h"
-
+#import "fourModal.h"
 @implementation fourTableViewCell
 
 - (void)awakeFromNib {
@@ -44,7 +44,7 @@
 
     self.userNameLabel.sd_layout
     .leftSpaceToView(self.iconImageView,10)
-    .centerXEqualToView(self.iconImageView)
+    .centerYEqualToView(self.iconImageView)
     .heightIs(20);
     [self.userNameLabel setSingleLineAutoResizeWithMaxWidth:200];
     
@@ -55,12 +55,12 @@
     .autoHeightRatio(0);
     
     self.timeLabel.sd_layout
-    .centerXEqualToView(self.userNameLabel)
+    .centerYEqualToView(self.userNameLabel)
     .rightSpaceToView(self.contentView,10)
     .leftSpaceToView(self.userNameLabel,10)
     .heightIs(20);
     
-    [self setupAutoHeightWithBottomView:self.timeLabel bottomMargin:20];
+    [self sd_addSubviews:@[self.iconImageView,self.userNameLabel,self.commentLabel,self.timeLabel]];
     
     
 }
@@ -68,10 +68,16 @@
 -(void)setModal:(fourModal *)modal
 {
     _modal = modal;
-//    [self.iconImageView.image]
+    NSLog(@"%@",modal);
+//    [self.iconImageView.image ]
+    self.userNameLabel.text = _modal.fromusernickname;
+    self.commentLabel.text = _modal.commentcontent;
+    self.timeLabel.text = _modal.creationdate;
+    NSLog(@"%@",self.userNameLabel.text);
+    NSLog(@"%@",self.timeLabel.text );
+    NSLog(@"%@",self.commentLabel.text);
     
-    
-    
+    [self setupAutoHeightWithBottomView:self.commentLabel bottomMargin:20];
 }
 
 

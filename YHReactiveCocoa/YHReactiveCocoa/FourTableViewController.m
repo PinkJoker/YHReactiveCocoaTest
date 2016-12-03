@@ -25,25 +25,35 @@
     
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self getDataFromViewModal];
+ 
+    [self creatTableView];
 
+
+}
+
+-(void)creatTableView
+{
+      [self getDataFromViewModal];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kWidth, kHeight-64) style:UITableViewStyleGrouped];
 
-    
+  
 }
 
 -(void)getDataFromViewModal
 {
     RACSignal *signal = [self.RequestViewModal.requestCommand execute:nil];
     [signal subscribeNext:^(id x) {
-        self.dataArray = x;
+        self.dataArray = [x copy];
         configureCellBlock block = ^(fourTableViewCell *myCell,fourModal *modal){
             [myCell setModal:modal];
         };
         self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:block withArray:self.dataArray withCellIdentifier:@"datacell"];
         self.tableView.delegate = self;
         self.tableView.dataSource = self.tableDataSource;
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+             [self.tableView reloadData];
+        });
+       
     }];
 }
 
@@ -59,8 +69,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:kWidth tableView:self.tableView];
+    NSLog(@"%f",[tableView cellHeightForIndexPath:indexPath cellContentViewWidth:375 tableView:self.tableView]);
+    
+    return [tableView cellHeightForIndexPath:indexPath cellContentViewWidth:375 tableView:self.tableView];
 }
+
 
 
 - (void)didReceiveMemoryWarning {

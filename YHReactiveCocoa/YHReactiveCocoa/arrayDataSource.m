@@ -32,6 +32,8 @@
     if (cell == nil) {
         cell = [[fourTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.identifier];
     }
+    id data  = [self numberOfItemswithIndex:indexPath];
+    [cell setModal:data];
     return cell;
 }
 

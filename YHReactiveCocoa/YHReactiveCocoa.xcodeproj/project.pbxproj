@@ -14,6 +14,10 @@
 		371101F41DF1539200D9D38D /* fourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 371101F31DF1539200D9D38D /* fourTableViewCell.m */; };
 		371101F71DF154B400D9D38D /* arrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 371101F61DF154B400D9D38D /* arrayDataSource.m */; };
 		371101FA1DF15DCF00D9D38D /* fourModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 371101F91DF15DCF00D9D38D /* fourModal.m */; };
+		3773AD8F1DF29A68002B76E7 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3773AD8B1DF29A68002B76E7 /* AFNetworking.framework */; };
+		3773AD901DF29A68002B76E7 /* MJExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3773AD8C1DF29A68002B76E7 /* MJExtension.framework */; };
+		3773AD911DF29A68002B76E7 /* SDAutoLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3773AD8D1DF29A68002B76E7 /* SDAutoLayout.framework */; };
+		3773AD921DF29A68002B76E7 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3773AD8E1DF29A68002B76E7 /* SDWebImage.framework */; };
 		377578B51DEC039B00925A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 377578B41DEC039B00925A89 /* main.m */; };
 		377578B81DEC039B00925A89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 377578B71DEC039B00925A89 /* AppDelegate.m */; };
 		377578BB1DEC039B00925A89 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377578BA1DEC039B00925A89 /* ViewController.m */; };
@@ -44,6 +48,10 @@
 		371101F61DF154B400D9D38D /* arrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arrayDataSource.m; sourceTree = "<group>"; };
 		371101F81DF15DCF00D9D38D /* fourModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fourModal.h; sourceTree = "<group>"; };
 		371101F91DF15DCF00D9D38D /* fourModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fourModal.m; sourceTree = "<group>"; };
+		3773AD8B1DF29A68002B76E7 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/YHReactiveCocoa-bffshhncpldmwycoyejuitdvjaof/Build/Products/Debug-iphonesimulator/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
+		3773AD8C1DF29A68002B76E7 /* MJExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJExtension.framework; path = "../../../Library/Developer/Xcode/DerivedData/YHReactiveCocoa-bffshhncpldmwycoyejuitdvjaof/Build/Products/Debug-iphonesimulator/MJExtension/MJExtension.framework"; sourceTree = "<group>"; };
+		3773AD8D1DF29A68002B76E7 /* SDAutoLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDAutoLayout.framework; path = "../../../Library/Developer/Xcode/DerivedData/YHReactiveCocoa-bffshhncpldmwycoyejuitdvjaof/Build/Products/Debug-iphonesimulator/SDAutoLayout/SDAutoLayout.framework"; sourceTree = "<group>"; };
+		3773AD8E1DF29A68002B76E7 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/YHReactiveCocoa-bffshhncpldmwycoyejuitdvjaof/Build/Products/Debug-iphonesimulator/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		377578B01DEC039B00925A89 /* YHReactiveCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YHReactiveCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		377578B41DEC039B00925A89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		377578B61DEC039B00925A89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +89,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3773AD8F1DF29A68002B76E7 /* AFNetworking.framework in Frameworks */,
+				3773AD901DF29A68002B76E7 /* MJExtension.framework in Frameworks */,
+				3773AD911DF29A68002B76E7 /* SDAutoLayout.framework in Frameworks */,
+				3773AD921DF29A68002B76E7 /* SDWebImage.framework in Frameworks */,
 				377578D91DEC14C300925A89 /* Masonry.framework in Frameworks */,
 				377578DA1DEC14C300925A89 /* Pods_YHReactiveCocoa.framework in Frameworks */,
 				377578DB1DEC14C300925A89 /* ReactiveCocoa.framework in Frameworks */,
@@ -171,6 +183,10 @@
 		CA4681A7633DA604B0B4BB8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3773AD8B1DF29A68002B76E7 /* AFNetworking.framework */,
+				3773AD8C1DF29A68002B76E7 /* MJExtension.framework */,
+				3773AD8D1DF29A68002B76E7 /* SDAutoLayout.framework */,
+				3773AD8E1DF29A68002B76E7 /* SDWebImage.framework */,
 				377578D61DEC14C300925A89 /* Masonry.framework */,
 				377578D71DEC14C300925A89 /* Pods_YHReactiveCocoa.framework */,
 				377578D81DEC14C300925A89 /* ReactiveCocoa.framework */,
