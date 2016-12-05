@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29D4584B80796139F083BD4B /* Pods_YHReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F5E8AA6F0A638A76B3B88D /* Pods_YHReactiveCocoa.framework */; };
+		3710DCFB1DF4F5D000488508 /* CommentDetailsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3710DCFA1DF4F5D000488508 /* CommentDetailsDataSource.m */; };
 		371101E61DF1417100D9D38D /* AFNByRACNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 371101E51DF1417100D9D38D /* AFNByRACNetworkRequest.m */; };
 		371101EE1DF1534000D9D38D /* FourTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371101ED1DF1534000D9D38D /* FourTableViewController.m */; };
 		371101F11DF1536900D9D38D /* fourViewModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 371101F01DF1536900D9D38D /* fourViewModal.m */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3710DCF91DF4F5D000488508 /* CommentDetailsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetailsDataSource.h; sourceTree = "<group>"; };
+		3710DCFA1DF4F5D000488508 /* CommentDetailsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetailsDataSource.m; sourceTree = "<group>"; };
 		371101E41DF1417100D9D38D /* AFNByRACNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNByRACNetworkRequest.h; sourceTree = "<group>"; };
 		371101E51DF1417100D9D38D /* AFNByRACNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNByRACNetworkRequest.m; sourceTree = "<group>"; };
 		371101EC1DF1534000D9D38D /* FourTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourTableViewController.h; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				37D7E55F1DED12A00037CDE3 /* SecondViewController.m */,
 				37F452251DEEBF8100C1942E /* ThirdViewController.h */,
 				37F452261DEEBF8100C1942E /* ThirdViewController.m */,
+				3710DCF91DF4F5D000488508 /* CommentDetailsDataSource.h */,
+				3710DCFA1DF4F5D000488508 /* CommentDetailsDataSource.m */,
 				3773AD941DF2BAE8002B76E7 /* CommentDetailsViewController.h */,
 				3773AD951DF2BAE8002B76E7 /* CommentDetailsViewController.m */,
 				3773AD961DF2BAE8002B76E7 /* CommentDetailsViewController.xib */,
@@ -342,6 +347,7 @@
 				37F452271DEEBF8100C1942E /* ThirdViewController.m in Sources */,
 				377578BB1DEC039B00925A89 /* ViewController.m in Sources */,
 				371101F71DF154B400D9D38D /* arrayDataSource.m in Sources */,
+				3710DCFB1DF4F5D000488508 /* CommentDetailsDataSource.m in Sources */,
 				371101E61DF1417100D9D38D /* AFNByRACNetworkRequest.m in Sources */,
 				371101EE1DF1534000D9D38D /* FourTableViewController.m in Sources */,
 				377578D21DEC099500925A89 /* CaculatorMaker.m in Sources */,

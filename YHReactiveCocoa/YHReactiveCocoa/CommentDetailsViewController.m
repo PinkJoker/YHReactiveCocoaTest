@@ -16,15 +16,18 @@ static NSString *const cellIdentifier = @"cell";
 
 @implementation CommentDetailsViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    configureCellBlock cellBlock = ^(id cell,id items){
-        
-    };
-    self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:cellBlock withArray:self.dataArray withCellIdentifier:cellIdentifier];
+    
+//    configureCellBlock cellBlock = ^(id cell,id items){
+//        
+//    };
+//    self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:cellBlock withArray:self.dataArray withCellIdentifier:cellIdentifier];
     self.CommentDetailsTableView.delegate = self;
-    self.CommentDetailsTableView.dataSource = self.tableDataSource;
+    self.CommentDetailsTableView.dataSource = self;
     
     
 }
@@ -34,6 +37,23 @@ static NSString *const cellIdentifier = @"cell";
     return 100;
 }
 
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    return cell;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 20;
+}
 
 -(NSMutableArray *)dataArray
 {

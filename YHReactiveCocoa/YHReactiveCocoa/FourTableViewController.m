@@ -11,6 +11,7 @@
 #import "fourTableViewCell.h"
 #import "fourViewModal.h"
 #import "fourModal.h"
+#import "CommentDetailsViewController.h"
 @interface FourTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)arrayDataSource *tableDataSource;
 @property(nonatomic, copy)NSMutableArray *dataArray;
@@ -58,13 +59,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    fourModal *modal = self.dataArray[indexPath.row];
-    if (self.tableSubject) {
-        [self.tableSubject sendNext:modal.commentcontent];
-    }
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+#pragma mark --练习RACSubject替换代理
+//    fourModal *modal = self.dataArray[indexPath.row];
+//    if (self.tableSubject) {
+//        [self.tableSubject sendNext:modal.commentcontent];
+//    }
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+    CommentDetailsViewController *comment = [[CommentDetailsViewController alloc]initWithNibName:@"CommentDetailsViewController" bundle:nil];
+    [self presentViewController:comment animated:YES completion:nil];
+    
+    
 }
 -(fourViewModal *)RequestViewModal
 {

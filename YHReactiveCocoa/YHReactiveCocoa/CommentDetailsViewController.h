@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CommentDetailsViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *CommentDetailsTableView;
+@property (weak, nonatomic) IBOutlet UITableView *CommentDetailsTableView; 
 
 @end
