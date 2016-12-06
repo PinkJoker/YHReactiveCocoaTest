@@ -8,7 +8,9 @@
 
 #import "CommentDetailsViewController.h"
 #import "arrayDataSource.h"
+
 static NSString *const cellIdentifier = @"cell";
+
 @interface CommentDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)arrayDataSource *tableDataSource;
 @property(nonatomic, strong)NSMutableArray *dataArray;
@@ -22,38 +24,37 @@ static NSString *const cellIdentifier = @"cell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    configureCellBlock cellBlock = ^(id cell,id items){
-//        
-//    };
-//    self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:cellBlock withArray:self.dataArray withCellIdentifier:cellIdentifier];
+    configureCellBlock cellBlock = ^(id cell,id items){
+        
+    };
+    self.tableDataSource = [[arrayDataSource alloc]initWithCellBlock:cellBlock withArray:self.dataArray withCellIdentifier:cellIdentifier];
     self.CommentDetailsTableView.delegate = self;
-    self.CommentDetailsTableView.dataSource = self;
+    self.CommentDetailsTableView.dataSource = self.tableDataSource;
     
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 80;
 }
 
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//    }
+//    return cell;
+//}
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    return cell;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 20;
-}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 1;
+//}
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return 20;
+//}
 
 -(NSMutableArray *)dataArray
 {
