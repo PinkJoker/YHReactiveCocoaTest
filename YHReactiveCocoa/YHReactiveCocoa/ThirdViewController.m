@@ -48,13 +48,81 @@
     _testLabel.backgroundColor = [UIColor blackColor];
     _testLabel.textColor = [UIColor whiteColor];
     
+    // -ignore:(id)  忽略给定的值，既可以是地址相同的对象  也可以是相同的值
+    [[_textField.rac_textSignal ignore:@"Joker"]subscribeNext:^(id x) {
+        
+    }];
+#pragma mark --RAC(T,P) 与signal的绑定
     //将输入框的输入信号绑定到testLabel的text上
-    RAC(self.testLabel,text) = _textField.rac_textSignal;
+    //1.
+  //  RAC(self.testLabel,text) = _textField.rac_textSignal;
+    //2.
+    //startwith"  一开始返回的初始值
+    //return 当filter满足条件value.length>3条件之后才能传出
+//    RAC(self.testLabel,text) = [[_textField.rac_textSignal startWith:@""]filter:^BOOL(NSString *value) {
+//        return value.length >3;
+//    }];
+//    //3.
+//    RAC(self.testLabel,text) = [_textField.rac_textSignal filter:^BOOL(NSString * value) {
+//        return value.length >5;
+//    }];
+    //4.map:         当输入joker时显示输入正确
+    RAC(self.testLabel,text) = [[[_textField.rac_textSignal startWith:@""]filter:^BOOL(NSString *value) {
+        return value.length >3;
+    }]map:^id(NSString *value) {
+        return [value isEqualToString:@"Joker"] ?@"bingo!":value;
+    }];
+#pragma mark --  -take:
+    //-take:(NSUInteger)
+    //从开始一共取N次next值
+    [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@"1"];
+        [subscriber sendNext:@"2"];
+        [subscriber sendNext:@3];
+        return [RACDisposable disposableWithBlock:^{
+            return [subscriber sendCompleted];
+        }];
+    }]take:2]subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    //-takeUntilBlock:(BOOL(^)(id x))
+    //对于每个next值，运行block 当block返回YES时停止取值
+    [[_textField.rac_textSignal takeUntilBlock:^BOOL(NSString* x) {
+        return [x isEqualToString:@"stop"];
+    }]subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
     
+    //-takeLast:(NSUInteger)
+    //取最后N次的next值，注意，由于一开始不能知道这个Signal将有多少个next值，所以RAC实现它的方法是将所有next值都存起来，然后原Signal完成时再将后N个依次发送给接收者，但Error发生时依然是立刻发送的
+    //-take
+    [[[_textField rac_signalForControlEvents:UIControlEventEditingChanged]map:^id(UITextField *value) {
+        return value.text;
+    }]takeUntil:_textField.rac_willDeallocSignal];
+    //-takeUntil:(RACSignal *)
+    //在给定的signal完成前一直取值
     
+    //-takeWhileBlock:(BooL(^)(id x))
+    //对于每个next值 ，block返回YES时才取值
+#pragma mark --  -skip
+    // -skip:(NSUInteger)
+    //从开始跳过N次的next值，简单的例子
+    [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@"1"];
+        [subscriber sendNext:@"2"];
+        [subscriber sendNext:@"3"];
+        [subscriber sendCompleted];
+        return nil;
+    }]skip:1]subscribeNext:^(id x) {
+        NSLog(@"回跳过第一个输入%@",x);
+    }];
+    // -skipUntilBlock:(BOOL (^)(id x))
+    //同-takeuntil  一直跳过知道block为YES
     
+    //-skipWhileBlock:(BOOL(^)(id x))
+    //同-takewhile  一直跳过，知道block为NO
     
-    
+#pragma mark --TestRequest
     //http://a.zkuaiji.cn/20/2002
     self.sessionManager = [AFHTTPSessionManager manager];
 //    self.sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
