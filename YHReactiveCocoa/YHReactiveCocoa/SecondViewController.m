@@ -14,6 +14,7 @@
 }
 //强引用命令，不要被销毁，否则接收不到数据
 @property(nonatomic, strong)RACCommand *_command;
+@property(nonatomic, strong)UILabel *secondLabel;
 @end
 
 @implementation SecondViewController
@@ -31,7 +32,7 @@
     }];
     [button addTarget:self action:@selector(touchButton:) forControlEvents:UIControlEventTouchDown];
     [button setTitle:@"这是Second的按钮" forState:UIControlStateNormal];
-
+    
     
 #pragma mark --RACSequence 
     //RAC中的集合类，用于代理NSArray,NSdictionary，可以用来快速便利数组和字典

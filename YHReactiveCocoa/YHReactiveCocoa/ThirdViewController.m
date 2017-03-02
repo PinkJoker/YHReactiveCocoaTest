@@ -43,8 +43,17 @@
         make.top.mas_equalTo(_textField.mas_bottom).offset(30);
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(-30);
-        make.height.mas_equalTo(20);
+        make.height.mas_equalTo(30);
     }];
+    _testLabel.backgroundColor = [UIColor blackColor];
+    _testLabel.textColor = [UIColor whiteColor];
+    
+    //将输入框的输入信号绑定到testLabel的text上
+    RAC(self.testLabel,text) = _textField.rac_textSignal;
+    
+    
+    
+    
     
     //http://a.zkuaiji.cn/20/2002
     self.sessionManager = [AFHTTPSessionManager manager];
