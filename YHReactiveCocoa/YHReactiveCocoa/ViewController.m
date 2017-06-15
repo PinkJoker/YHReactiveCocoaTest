@@ -67,8 +67,56 @@
     _testLabel.textAlignment = 1;
     
     
+    RACSignal *letters  = [@"A B C D E F G" componentsSeparatedByString:@" "].rac_sequence.signal;
+    [letters subscribeNext:^(id x) {
+        //  NSLog(@"%@",x);
+    }];
     
     
+    __block unsigned subscriptions = 0;
+    RACSignal *loggingSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        subscriptions++;
+        [subscriber sendCompleted];
+        return [RACDisposable disposableWithBlock:^{
+            NSLog(@"调用销毁");
+        }];
+    }];
+    
+    loggingSignal = [loggingSignal doCompleted:^{
+        NSLog(@"这里不会有任何输出");
+    }];
+    
+    [loggingSignal subscribeNext:^(id x) {
+        NSLog(@"订阅");
+        NSLog(@"%@",x);
+    }];
+    
+#pragma mark     //重组条件 map
+    RACSequence *leter = [@" A B C D E F G H" componentsSeparatedByString:@" "].rac_sequence;
+    RACSequence *mapped = [leter map:^(NSString *value) {
+        return [value stringByAppendingString:value];
+    }];
+    [mapped.signal subscribeNext:^(id x) {
+        //        NSLog(@"%@",x);
+    }];
+    
+#pragma mark     //过滤条件 filter
+    RACSequence *fileter = [leter filter:^BOOL(NSString * value) {
+        // NSLog(@"%@",value);
+        return [value isEqualToString:@"B"];
+    }];
+    [fileter.signal subscribeNext:^(id x) {
+        //NSLog(@"%@",x);
+    }];
+    //连接 拼接(将nuber拼接在letterss之后)  concat
+    RACSequence *letterss = [@"A B C D E F G H I" componentsSeparatedByString:@" "].rac_sequence;
+    RACSequence *nuber = [@"0 1 2 4 5 6 7 8"componentsSeparatedByString:@" "].rac_sequence;
+    RACSequence *contact = [letterss concat:nuber];
+    [contact.signal subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+
 #pragma mark --RAC RACSignal
     //1.创建信号
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
